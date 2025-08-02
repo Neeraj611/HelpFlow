@@ -6,6 +6,13 @@ app.secret_key = "your_secret_key"
 
 # In-memory storage
 users = []
+users.append({
+    'name': 'Admin',
+    'email': 'admin@helpflow.com',
+    'password': generate_password_hash('admin123'),
+    'role': 'Admin'
+})
+
 tickets = []
 
 @app.route('/')
@@ -74,7 +81,11 @@ def profile():
 def dashboard():
     if 'user' not in session:
         return redirect(url_for('login'))
-    return render_template('dashboard.html', user=session['user'], tickets=tickets)
+    
+    # Only show tickets of the logged-in user
+    user_tickets = [t for t in tickets if t['email'] == session['user']['email']]
+    return render_template('dashboard.html', user=session['user'], tickets=user_tickets)
+
 
 # ---------------- Admin Panel ----------------
 @app.route('/admin')
