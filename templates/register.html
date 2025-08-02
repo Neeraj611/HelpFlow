@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | HelpFlow</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body class="register-page">
+
+  <div class="register-container">
+    <div class="register-box">
+
+      <!-- Logo -->
+      <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="HelpFlow Logo" class="logo" />
+
+      <h2>Register for <span class="blue">HelpFlow</span></h2>
+
+      <!-- Flash Messages -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Registration Form -->
+      <form action="{{ url_for('register') }}" method="POST" class="register-form">
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder="Enter your Full Name" required />
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Enter your Email Address" required />
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="password" name="password" placeholder="Enter Password" required />
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+        </div>
+
+        <button type="submit" class="btn primary">Register</button>
+      </form>
+
+      <p class="redirect">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+
+    </div>
+  </div>
+
+</body>
+</html>

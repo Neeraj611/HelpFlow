@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ticket Details | HelpFlow</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/logo.png') }}">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ticket.css') }}">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a2e0bf0c6d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="left">
+      <a href="{{ url_for('dashboard') }}" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+  </header>
+
+  <!-- Ticket Main Content -->
+  <main class="ticket-container">
+    <div class="ticket-info">
+      <h2 id="ticketTitle">Loading...</h2>
+      <p><strong>Category:</strong> <span id="ticketCategory">Loading...</span></p>
+      <p><strong>Status:</strong> <span id="ticketStatus">Loading...</span></p>
+      <p><strong>Author:</strong> <span id="ticketAuthor">Loading...</span></p>
+      <p><strong>Tags:</strong> <span id="ticketTags">Loading...</span></p>
+    </div>
+
+    <div class="conversation-section">
+      <h3>💬 Conversation</h3>
+      <div id="conversationThread" class="conversation">
+        <!-- Messages will load here -->
+      </div>
+
+      <form id="replyForm" class="reply-form" method="POST">
+        <textarea id="replyMessage" rows="3" placeholder="Write a reply..." required></textarea>
+        <button type="submit" class="btn reply-btn">Reply</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', filename='js/ticket.js') }}"></script>
+
+</body>
+</html>

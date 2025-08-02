@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile | HelpFlow</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/logo.png') }}">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a2e0bf0c6d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="profile-container">
+    <div class="profile-header">
+      <h2>Profile</h2>
+      <div class="profile-links">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('agent') }}" id="agentLink" style="display: none;">Agent Panel</a>
+        <a href="{{ url_for('admin') }}" id="adminLink" style="display: none;">Admin Panel</a>
+        <a href="#" onclick="logout()" class="logout-btn">Logout</a>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-fields">
+        <label for="name">
+          Name:
+          <button id="editNameBtn" title="Edit Name"><i class="fas fa-pencil-alt"></i></button>
+        </label>
+        <input type="text" id="name" readonly>
+
+        <label for="role">Role:</label>
+        <input type="text" id="role" readonly>
+
+        <button id="upgradeBtn" style="display: none;">Request Role Upgrade</button>
+
+        <label for="category">Category of Interest:</label>
+        <input type="text" id="category" placeholder="e.g. Billing, Technical">
+
+        <label for="language">Language Expertise:</label>
+        <select id="language">
+          <option value="">Select Language</option>
+          <option>English</option>
+          <option>Hindi</option>
+          <option>Punjabi</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="profile-image-container">
+        <label for="uploadProfile" class="profile-image" title="Click to upload image">
+          <input type="file" id="uploadProfile" accept="image/*">
+          <img id="profilePreview" src="{{ url_for('static', filename='assets/default-profile.png') }}" alt="Profile Image">
+          <span class="upload-text">Upload<br>Image</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Set localStorage from session -->
+  <script>
+    const helpflowUser = {{ user | tojson }};
+    localStorage.setItem("helpflowUser", JSON.stringify(helpflowUser));
+  </script>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+</html>

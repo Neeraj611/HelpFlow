@@ -1,0 +1,187 @@
+/* Dashboard Theme Styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #e0f7ff, #ffffff);
+  color: #1f2f3d;
+  margin: 0;
+  padding: 0;
+}
+
+/* Top Bar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 123, 255, 0.1);
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.right .btn {
+  margin-left: 1rem;
+  background: #007BFF;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.right .btn:hover {
+  background: #005dc1;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: #f0fcff;
+  border-top: 1px solid #ccf0ff;
+  border-bottom: 1px solid #ccf0ff;
+}
+
+.filters select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #cce4ff;
+  background-color: #ffffff;
+  font-size: 1rem;
+}
+
+/* Search Bar */
+.search-section {
+  padding: 1rem 2rem;
+  background-color: #f0fcff;
+}
+
+#searchBar {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #cceaff;
+  border-radius: 10px;
+  background-color: #ffffff;
+  font-size: 1rem;
+}
+
+/* Ticket List */
+.ticket-list {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 400px;
+}
+
+.ticket {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.ticket h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.ticket .category {
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+  color: #555;
+}
+
+.ticket .votes {
+  font-size: 0.9rem;
+  color: #007BFF;
+  margin-top: 0.4rem;
+}
+
+.ticket .toggle-convo {
+  margin-top: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.ticket .toggle-convo:hover {
+  background-color: #005dc1;
+}
+
+.conversation {
+  margin-top: 1rem;
+  background-color: #f9fcff;
+  border-left: 4px solid #007BFF;
+  padding: 1rem;
+  border-radius: 8px;
+  display: none;
+}
+
+.chat {
+  margin-bottom: 0.7rem;
+}
+
+.chat.user strong {
+  color: #1f2f3d;
+}
+
+.chat.support strong {
+  color: #28a745;
+}
+
+/* Pagination */
+.pagination {
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0fcff;
+  border-top: 1px solid #ccf0ff;
+}
+
+.page {
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.page.active {
+  background-color: #007BFF;
+  color: white;
+}
+
+.dots {
+  padding: 0 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+}

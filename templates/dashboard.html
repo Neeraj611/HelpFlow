@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | HelpFlow</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/logo.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+  <script src="https://kit.fontawesome.com/a2e0bf0c6d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="left">
+      <span class="username">Welcome, {{ user.name }}</span>
+    </div>
+    <div class="right">
+      <a href="{{ url_for('create_ticket') }}" class="btn">+ Create Ticket</a>
+      <a href="{{ url_for('profile') }}" class="btn">Profile</a>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <section class="filters">
+    <select id="categoryFilter">
+      <option value="">All Categories</option>
+      <option value="Technical">Technical</option>
+      <option value="Billing">Billing</option>
+      <option value="Login">Login</option>
+      <option value="General">General</option>
+    </select>
+
+    <select id="sortFilter">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+    </select>
+  </section>
+
+  <!-- Search -->
+  <section class="search-section">
+    <input type="text" id="searchBar" placeholder="Search tickets..." />
+  </section>
+
+  <!-- Tickets -->
+  <section id="ticketList" class="ticket-list">
+    {% if tickets %}
+      {% for ticket in tickets %}
+        <div class="ticket">
+          <h3>{{ ticket.question }}</h3>
+          <p><strong>Author:</strong> {{ ticket.author }}</p>
+          <p><strong>Category:</strong> {{ ticket.category }}</p>
+          <p><strong>Status:</strong> {{ ticket.status }}</p>
+          <p><strong>Tags:</strong> {{ ticket.tags or 'N/A' }}</p>
+          {% if ticket.replies %}
+            <div>
+              <strong>Replies:</strong>
+              <ul>
+                {% for reply in ticket.replies %}
+                  <li><strong>{{ reply.author }}:</strong> {{ reply.message }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No tickets found.</p>
+    {% endif %}
+  </section>
+
+  <!-- JS for search/filter -->
+  <script>
+    const searchInput = document.getElementById("searchBar");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const sortFilter = document.getElementById("sortFilter");
+
+    function filterTickets() {
+      const query = searchInput.value.toLowerCase();
+      const category = categoryFilter.value;
+      const sort = sortFilter.value;
+      const tickets = document.querySelectorAll(".ticket-list .ticket");
+
+      [...tickets].forEach(ticket => {
+        const title = ticket.querySelector("h3").innerText.toLowerCase();
+        const cat = ticket.innerHTML.toLowerCase();
+
+        const matchCategory = category === "" || cat.includes(category.toLowerCase());
+        const matchSearch = query === "" || title.includes(query);
+
+        ticket.style.display = (matchCategory && matchSearch) ? "block" : "none";
+      });
+
+      if (sort === "oldest") {
+        const parent = document.querySelector(".ticket-list");
+        const children = Array.from(parent.children);
+        children.reverse().forEach(c => parent.appendChild(c));
+      }
+    }
+
+    searchInput.addEventListener("input", filterTickets);
+    categoryFilter.addEventListener("change", filterTickets);
+    sortFilter.addEventListener("change", filterTickets);
+  </script>
+</body>
+</html>
