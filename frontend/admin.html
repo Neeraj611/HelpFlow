@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel | HelpFlow</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="icon" href="assets/logo.png" />
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="left">
+      <img src="assets/logo.png" alt="HelpFlow Logo" class="logo" />
+      <h2>Admin Panel</h2>
+    </div>
+    <div class="right">
+      <a href="dashboard.html" class="btn">Dashboard</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="admin-container">
+
+    <!-- Ticket Statistics -->
+    <section class="stats">
+      <h3>📊 Ticket Overview</h3>
+      <div class="stat-grid">
+        <div class="stat-box total">Total: <span id="total">0</span></div>
+        <div class="stat-box open">Open: <span id="open">0</span></div>
+        <div class="stat-box closed">Closed: <span id="closed">0</span></div>
+        <div class="stat-box solved">Solved: <span id="solved">0</span></div>
+        <div class="stat-box unsolved">Unsolved: <span id="unsolved">0</span></div>
+      </div>
+    </section>
+
+    <!-- Role Promotion Requests -->
+    <section class="promotions">
+      <h3>🔔 Role Promotion Requests</h3>
+      <div id="promotionList" class="promo-list"></div>
+    </section>
+
+    <!-- Support Agents Section -->
+    <section class="agents">
+      <h3>🧑‍💻 Support Agents</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody id="agentTable"></tbody>
+      </table>
+    </section>
+
+    <!-- Users Section -->
+    <section class="users">
+      <h3>👤 Users</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody id="userTable"></tbody>
+      </table>
+    </section>
+
+    <!-- User Role Management -->
+    <section class="user-roles">
+      <h3>🔐 User Management (Roles & Permissions)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Current Role</th>
+            <th>Change Role</th>
+          </tr>
+        </thead>
+        <tbody id="roleTable"></tbody>
+      </table>
+    </section>
+
+    <!-- Category Management -->
+    <section class="category-management">
+      <h3>🗂️ Category Management</h3>
+      <ul id="categoryList" class="category-list"></ul>
+      <div class="add-category">
+        <input type="text" id="newCategory" placeholder="New Category" />
+        <button id="addCategoryBtn">Add Category</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Script files -->
+  <script src="js/admin.js"></script>
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user || user.role !== "Admin") {
+      alert("Access denied. Admins only.");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

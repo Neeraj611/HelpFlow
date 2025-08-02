@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ticket Details | HelpFlow</title>
+  <link rel="stylesheet" href="css/ticket.css" />
+  <link rel="icon" href="assets/logo.png" />
+  <script src="https://kit.fontawesome.com/a2e0bf0c6d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="left">
+      <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+  </header>
+
+  <main class="ticket-container">
+    <div class="ticket-info">
+      <h2 id="ticketTitle"></h2>
+      <p><strong>Category:</strong> <span id="ticketCategory"></span></p>
+      <p><strong>Status:</strong> <span id="ticketStatus"></span></p>
+      <p><strong>Author:</strong> <span id="ticketAuthor"></span></p>
+      <p><strong>Tags:</strong> <span id="ticketTags"></span></p>
+    </div>
+
+    <div class="conversation-section">
+      <h3>💬 Conversation</h3>
+      <div id="conversationThread" class="conversation"></div>
+
+      <form id="replyForm" class="reply-form">
+        <textarea id="replyMessage" rows="3" placeholder="Write a reply..." required></textarea>
+        <button type="submit" class="btn reply-btn">Reply</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/ticket.js"></script>
+</body>
+</html>
